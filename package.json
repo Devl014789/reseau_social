@@ -1,0 +1,36 @@
+{
+  "name": "resaux-social",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/Devl014789/r-saux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Devl014789/r-saux/issues"
+  },
+  "homepage": "https://github.com/Devl014789/r-saux#readme",
+  "dependencies": {
+    "async": "^3.2.4",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cookies-parser": "^1.2.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.19",
+    "path": "^0.12.7",
+    "sequelize": "^6.21.3"
+  }
+}
