@@ -24,10 +24,6 @@ module.exports = {
           key:'id'
         }
       },
-      isLike: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

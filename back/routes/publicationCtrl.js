@@ -71,7 +71,7 @@ module.exports = {
         models.Publication.destroy({
             where: { 
                 id: publicationId,
-                userId: userId
+                userId: userId,
             }
         })
             .then((deletePublication) => {

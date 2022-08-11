@@ -46,7 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    isLike: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Like',
