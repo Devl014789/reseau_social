@@ -21,11 +21,10 @@ exports.router = ( () => {
     apiRouteur.route('/post/:id/delete/').delete(publicationCtrl.deletePost);
 
     apiRouteur.route('/post/:id/comment/new/').post(commentsCtrl.createComment);
-    apiRouteur.route('/post/:id/comment/').get(commentsCtrl.listComment);
+    apiRouteur.route('/post/comment/').get(commentsCtrl.listComment);
     apiRouteur.route('/post/:id/comment/:commentid/delete').delete(commentsCtrl.deleteComment);
 
-    apiRouteur.route('/post/:publicationId/vote/like').post(likesCtrl.likePost)
-    apiRouteur.route('/post/:publicationId/vote/dislike').post(likesCtrl.dislikePost)
+    apiRouteur.route('/post/:id/vote/like').post(likesCtrl.likePost)
 
     return apiRouteur;
 })();

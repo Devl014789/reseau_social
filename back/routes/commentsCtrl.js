@@ -33,8 +33,7 @@ module.exports = {
 
     },
     listComment: (req, res) => {
-        (done) => {
-            models.comment.findAll({
+            models.Comment.findAll({
                 attributes: ["id", "userId", 'PublicationId', "content"]
             })
                 .then((comment) => {
@@ -48,7 +47,7 @@ module.exports = {
                     console.log(err);
                     res.status(500).json({ "error": "invalid fields" });
                 })
-        }
+        
 
 
     },
