@@ -1,5 +1,16 @@
-<%- include('./include/head') %>  
-<body>
-    <%- include('./include/navPost') %>
+<%- include('./include/head') %>
+
+<body class="publication_body">
+  <script src="https://kit.fontawesome.com/b29aa4ed15.js" crossorigin="anonymous"></script>
+  <%- include('./include/navPost') %>
+  <div class="contnaier_publication">
+    <div class="newpost">
+      <input class="publication_message" type="text" name="msg" placeholder="Message" id="msg">
+      <div class="commande_palette">
+        <a type="submit" class="btn_envoyer"><i class="fa-solid fa-paper-plane paper"></i></a>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

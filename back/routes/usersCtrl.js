@@ -119,6 +119,7 @@ module.exports = {
         let userId = jwtUtiles.getUserId(token)
         let lastname = req.body.lastname;
         let firstname = req.body.firstname;
+        let username = req.body.username;
         let email = req.body.email;
         asyncLib.waterfall([
             (done) => {
@@ -138,6 +139,7 @@ module.exports = {
                         lastname: (lastname ? lastname : userFound.lastname),
                         firstname: (firstname ? firstname : userFound.firstname),
                         email: (email ? email : userFound.email),
+                        username: (username? username : userFound.username),
                     }).then(() => {
                         done(userFound);
                     }).catch((err) => {

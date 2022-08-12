@@ -1,0 +1,18 @@
+<%- include('./include/head') %>
+
+<body class="profil_body">
+  <%- include('./include/navPost') %>
+  <div class="cont_profil">
+    <div class="cont_form">
+      <form class="form_profil" action="/profil" method="update" enctype="multipart/form-data">
+        <input class="profil_input input_lf" type="text" name="last_name" placeholder="LastName" id="profil_last_name">
+        <input class="profil_input input_lf" type="text" name="first_name" placeholder="FirstName" id="profil_first_name">
+        <input class="profil_input" type="text" name="username" placeholder="Username" id="profil_username">
+        <input class="profil_input" type="text" name="email" placeholder="Email" id="profil_email">
+        <button class="profil_btn" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

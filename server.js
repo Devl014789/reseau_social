@@ -4,6 +4,18 @@ const app = express();
 const apiRouteur = require('./back/apiRouteur').router;
 const {checkUser} = require('./utiles/authtoken');
 const path = require('path');
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, './public/img')
+    },
+    filename: (req, file, callback) => {
+        console.log(file);
+        callback(null, Date.now() + path.extname(file.originalname));
+    }
+})  ;
+const upload = multer({ storage: storage})
+
 
 
 
@@ -36,9 +48,13 @@ app.get('/post', (req, res) => {
     res.render('publication')
 })
 
-// app.get('/profil', (req, res) => {
-//     res.render('profil')
-// })
+app.post('/post', upload.single('image'), (req, res) => {
+    res.send('image uploaded')
+})
+
+app.get('/profil', (req, res) => {
+    res.render('profil')
+})
 
 
 app.use('/api/', apiRouteur)
