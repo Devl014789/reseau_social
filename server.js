@@ -32,6 +32,14 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 
+app.get('/post', (req, res) => {
+    res.render('publication')
+})
+
+// app.get('/profil', (req, res) => {
+//     res.render('profil')
+// })
+
 
 app.use('/api/', apiRouteur)
 
