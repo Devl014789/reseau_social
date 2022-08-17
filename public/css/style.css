@@ -230,3 +230,85 @@ nav {
   border-top: solid black 1px;
 }
 
+/* login and rgister css */
+
+.connexion {
+
+  text-align: center;
+
+  width: 90%;
+
+  margin: auto;
+
+}
+
+.button_connexion {
+
+  background: rgb(8, 18, 144);
+  background: linear-gradient(
+    144deg,
+    rgba(8, 18, 144, 1) 38%,
+    rgba(29, 92, 184, 1) 66%,
+    rgba(0, 232, 255, 1) 96%
+  );
+
+  color: white;
+
+  height: 60px;
+
+  width: 100%;
+
+  cursor: pointer;
+
+  border-radius: 15px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.textgris {
+
+  color: grey;
+
+  margin-top: 10px;
+
+}
+
+
+
+footer {
+
+  color: grey;
+
+}
+
+
+
+.titre {
+
+  background-color: transparent;
+
+  width: 100%;
+
+  height: 60px;
+
+  margin-bottom: 20px;
+
+  color: white;
+
+  border: 0;
+
+  border-bottom: solid grey 1px;
+  font-size: 20px;
+
+}
+
+
+
+::placeholder {
+
+  color: white;
+
+}
