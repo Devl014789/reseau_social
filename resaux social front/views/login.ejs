@@ -1,0 +1,30 @@
+<%- include('./include/head.ejs') %>
+<section class="connexion">
+  <%- include('./include/nav') %>
+  <form action="/login"   method="post" id="login">
+    <div class="connexion2">
+      <label class="titre" for="Email"></label>
+      <input class="titre" type="Email" id="Email" name="email" placeholder="Email"><br>
+      <div className="email error"></div>
+      <label class="titre" for="Password"></label>
+      <input class="titre" type="Password" id="Password" name="password" placeholder="Password">
+      <div className="password error"></div>
+      <button class="button_connexion" type="submit" value="Se connecter" id="Se-connecter">Se connecter</button>
+      <div class="textgris">Mot de passe oublié?</div>
+      <div class="textgris">Vous n'avez pas de compte?</div>
+      <a href="register">Inscrivez-vous</a>
+    </div>
+  </form>
+  <footer></footer>
+</section>
+<script src="/controllers/userCtrl.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+    
+
