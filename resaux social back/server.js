@@ -2,7 +2,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const apiRouteur = require('./back/apiRouteur').router;
-const {checkUser} = require('./utiles/authtoken');
+// const {checkUser} = require('./utiles/authtoken');
 const path = require('path');
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -30,7 +30,7 @@ app.set('/img', path.join(__dirname, '/public'));
 
 app.use(express.static(__dirname + '/public'))
 
-app.get('*', checkUser);
+// app.get('*', checkUser);
 
 
 

@@ -1,6 +1,18 @@
 <%- include('./include/head.ejs') %>
 <section class="connexion">
   <%- include('./include/nav') %>
+
+  <% if(locals.error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+    <% if(locals.message) { %>
+    <div class="alert alert-success" role="alert">
+      <%= message %>
+    </div>
+    <% } %>
+
   <form action="/login"   method="post" id="login">
     <div class="connexion2">
       <label class="titre" for="Email"></label>

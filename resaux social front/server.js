@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const multer = require('multer');
 const userCtrl = require('./controllers/userCtrl');
+const postCtrl = require('./controllers/postCtrl')
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, './public/img')
@@ -47,17 +48,21 @@ app.get('/login', (req, res) => {
 
 app.post('/login', userCtrl.login )
 
-app.get('/post', (req, res) => {
+app.get('/post', userCtrl.authToken, (req, res) => {
     res.render('publication')
 })
 
-app.post('/post', upload.single('image'), (req, res) => {
-    res.send('image uploaded')
-})
+// app.post('/post', upload.single('image'), (req, res) => {
+//     res.send('image uploaded')
+// })
 
-app.get('/profil', (req, res) => {
+app.post('/post', postCtrl.newPost)
+
+app.get('/profil', userCtrl.authToken, (req, res) => {
     res.render('profil')
 })
+
+app.put('/profil', userCtrl.update)
 
 
 app.listen(8081, () => {

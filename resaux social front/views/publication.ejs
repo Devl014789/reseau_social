@@ -1,13 +1,48 @@
 <%- include('./include/head') %>
 
 <body class="publication_body">
-  <script src="https://kit.fontawesome.com/b29aa4ed15.js" crossorigin="anonymous"></script>
   <%- include('./include/navPost') %>
+
+  <% if(locals.error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+    <% if(locals.message) { %>
+    <div class="alert alert-success" role="alert">
+      <%= message %>
+    </div>
+    <% } %>
+
+
+
   <div class="contnaier_publication">
     <div class="newpost">
-      <input class="publication_message" type="text" name="msg" placeholder="Message" id="msg">
+      <form action="/post" method="post" class="post_form">
+      <input class="publication_message" type="text" name="text" placeholder="Message" id="msg">
       <div class="commande_palette">
-        <a type="submit" class="btn_envoyer"><i class="fa-solid fa-paper-plane paper"></i></a>
+        <button type="submit" class="btn_envoyer" method="post"><i class="fa-solid fa-paper-plane paper"></i></button>
+      </div>
+    </form>
+    </div>
+    <div class="allpost">
+      <div class="post_content">
+        <div name="username" class="post_user" id="username">max</div>
+        <div name="textp" class="post_text" id="textp"></div>
+        <div name="image" class="post_image" id="image"><img class="post_image_src" name="post_image_src" src="/img/Groupomania Logos (update 2022)/color_logo.png" alt=""></div>
+        <div name="like" class="post_like" id="like"><button type="submit"><i class="fa-solid fa-heart"></i></button></div>
+        <div class="allcomment">
+          <div name="content" class="comment_content" id="content">jblzafblfazblfqazb</div>
+        </div>
+      </div>
+      <div class="post_content">
+        <div name="username" class="post_user">max</div>
+        <div name="textp" class="post_text">jesuis content</div>
+        <div name="image" class="post_image"></div>
+        <div name="like" class="post_like">like</div>
+        <div class="allcomment">
+          <div name="content" class="comment_content">jblzafblfazblfqazb</div>
+        </div>
       </div>
     </div>
   </div>

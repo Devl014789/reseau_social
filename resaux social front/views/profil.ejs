@@ -2,14 +2,25 @@
 
 <body class="profil_body">
   <%- include('./include/navPost') %>
+
+  <% if(locals.error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+    <% if(locals.message) { %>
+    <div class="alert alert-success" role="alert">
+      <%= message %>
+    </div>
+    <% } %>
+
   <div class="cont_profil">
     <div class="cont_form">
-      <form class="form_profil" action="/profil" method="update" enctype="multipart/form-data">
-        <input class="profil_input input_lf" type="text" name="last_name" placeholder="LastName" id="profil_last_name">
-        <input class="profil_input input_lf" type="text" name="first_name" placeholder="FirstName" id="profil_first_name">
+      <form class="form_profil" action="profil" method="put" enctype="multipart/form-data">
+        <input class="profil_input input_lf" type="text" name="lastname" placeholder="LastName" id="profil_last_name">
+        <input class="profil_input input_lf" type="text" name="firstname" placeholder="FirstName" id="profil_first_name">
         <input class="profil_input" type="text" name="username" placeholder="Username" id="profil_username">
-        <input class="profil_input" type="text" name="email" placeholder="Email" id="profil_email">
-        <button class="profil_btn" type="submit">Save</button>
+        <button class="profil_btn" type="submit" >Save</button>
       </form>
     </div>
   </div>

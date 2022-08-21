@@ -1,4 +1,15 @@
 const fetch = require('node-fetch');
+const localStorage = require('node-localstorage').LocalStorage;
+let localStorageToken = new localStorage("./scratch");
+
+
+
+
+exports.authToken = async (req, res, next) => {
+    let myToken = localStorageToken.getItem("jwt-token")
+    if(!myToken)res.redirect("login")
+    next();
+}
 
 exports.register = async (req, res) => {   
     let reg = fetch("http://localhost:8080/api/user/register/", { 
@@ -22,7 +33,7 @@ exports.register = async (req, res) => {
               .then((json) => {      
                  console.log(json);       
                  if (json.message) {        
-                     res.redirect("login")    
+                     res.render("login", json)    
                      }else {         
                         res.render('register',json)       
                     }     })     
@@ -48,7 +59,8 @@ exports.login = async (req, res) => {
         
         console.log(json);
         if (json.token) {
-            res.redirect("post")
+            res.redirect("post"),
+            localStorageToken.setItem("jwt-token", json.token);
             
         } else {
             res.render('login', json)
@@ -59,4 +71,26 @@ exports.login = async (req, res) => {
     })
 }
 
+exports.update = async (req, res) => {
+    let upd = fetch("http://localhost:8080/api/updateuser", {
+        method: "PUT",
+        body: JSON.stringify ({
+            token: localStorageToken.getItem('jwt-token'),
+            username: req.body.username,
+            lastname: req.body.lastname,
+            firstname: req.body.firstname
+        }),
 
+        headers: {       
+            "Content-type": "application/json",    
+         }, 
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        console.log(json);
+        res.render("profil", json)
+})
+   .catch((err) => {
+    console.log(err);
+})
+}

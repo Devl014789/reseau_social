@@ -1,14 +1,14 @@
 <%- include('./include/head.ejs') %>
 <section class="connexion">
   <%- include('./include/nav') %>
-  <% if(locals.errorMessage) { %>
+  <% if(locals.error) { %>
   <div class="alert alert-danger" role="alert">
-    <%= errorMessage %>
+    <%= error %>
   </div>
   <% } %>
-  <% if(locals.successMessage) { %>
+  <% if(locals.message) { %>
   <div class="alert alert-success" role="alert">
-    <%= successMessage %>
+    <%= message %>
   </div>
   <% } %>
   <form action="/register" method="post" id="example-form">

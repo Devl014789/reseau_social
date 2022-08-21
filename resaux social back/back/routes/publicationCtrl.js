@@ -8,7 +8,7 @@ module.exports = {
     createPost: (req, res) => {
 
 
-        let token = req.cookies.jwt;
+        let token = req.body.token;
         res.cookie('jwt', token, { httpOnly: true });
         let userId = jwtUtiles.getUserId(token)
         let text = req.body.text;
@@ -23,12 +23,13 @@ module.exports = {
                     models.Publication.create({
                         text: text,
                         likes: 0,
-                        //image: image,
+                        // image: image,
                         UserId: userId
 
                     })
                         .then((newPost) => {
                             done(newPost)
+                            
                         })
                 } else {
                     return res.status(404).json({ 'error': 'user not found' })
@@ -37,7 +38,9 @@ module.exports = {
         ],
             (newPost) => {
                 if (newPost) {
-                    return res.status(201).json(newPost)
+                    return res.status(201).json({
+                        'message': 'successfully created',
+                    })
                 } else {
                     return res.status(500).json({ 'error': 'cannot post the publication' })
                 }
@@ -51,7 +54,10 @@ module.exports = {
         })
             .then((post) => {
                 if (post) {
-                    return res.status(200).json(post)
+                    return res.status(200).json({
+                        post,
+                        "message": "posted successfully",
+                    })
                 } else {
                     return res.status(404).json({ 'error': 'no post found' })
                 }

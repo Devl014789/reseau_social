@@ -20,8 +20,8 @@ module.exports = {
             return res.status(400).json({ 'error': 'Champs non remplie' });
         }
 
-        if (username.length >= 13 || username.length <= 4) {
-            return res.status(400).json({ 'error': 'Charactere pas assez dans username' });
+        if (username.length >= 13 || username.length <= 2) {
+            return res.status(400).json({ 'error': 'Charactere pas assez dans username (min 2 characters)' });
         }
 
         if (!emailRegex.test(email)) {
@@ -31,6 +31,11 @@ module.exports = {
         if (!passwordRegex.test(password)) {
             return res.status(401).json({ 'error': 'Password invalide' })
         }
+
+        if (password.length >= 45 || password.length <= 4) {
+            return res.status(400).json({ 'error': 'Charactere pas assez dans password (min 4 characters)' });
+        }
+
         //verify 
         models.User.findOne({
             attributes: ['email'],
@@ -48,7 +53,7 @@ module.exports = {
                         })
                             .then((newUser) => {
                                 return res.status(201).json({
-                                    message: 'User successfully created', 'userid': newUser.id
+                                    "message": 'User successfully created', 'userid': newUser.id
 
                                 })
                             })
@@ -97,7 +102,7 @@ module.exports = {
 
     },
     GetUser: (req, res) => {
-        let token = req.cookies.jwt;
+        let token = req.body.token;
         res.cookie('jwt', token, { httpOnly: true });
         let userId = jwtUtiles.getUserId(token)
         models.User.findOne({
@@ -116,7 +121,8 @@ module.exports = {
 
     },
     UpdateUser: function (req, res) {
-        let token = req.cookies.jwt;
+        let token = req.body.token;
+        console.log(token);
         res.cookie('jwt', token, { httpOnly: true });
         let userId = jwtUtiles.getUserId(token)
         let lastname = req.body.lastname;
@@ -142,6 +148,10 @@ module.exports = {
                         username: (username? username : userFound.username),
                     }).then(() => {
                         done(userFound);
+                        return res.status(201).json({
+                            "message":  'User successfully created'
+
+                        })
                     }).catch((err) => {
                         res.status(500).json({ 'error': 'cannot update user' });
                     });
@@ -158,7 +168,7 @@ module.exports = {
         });
     },
     DeleteUser: (req, res) => {
-        let token = req.cookies.jwt;
+        let token = req.body.token;
         res.cookie('jwt', token, { httpOnly: true });
         let userId = jwtUtiles.getUserId(token)
         models.User.findOne({
