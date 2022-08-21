@@ -32,17 +32,17 @@ app.use(express.static(__dirname + '/public'))
 
 // app.get('*', checkUser);
 
-app.get('/', (req, res) => {
+app.get('/', userCtrl.isloged, (req, res) => {
     res.render('home')
 })
 
-app.get('/register', (req, res) => {
+app.get('/register' , userCtrl.isloged, (req, res) => {
     res.render('register')
 })
 
 app.post('/register', userCtrl.register); 
 
-app.get('/login', (req, res) => {
+app.get('/login', userCtrl.isloged, (req, res) => {
     res.render('login')
 })
 
@@ -62,7 +62,11 @@ app.get('/profil', userCtrl.authToken, (req, res) => {
     res.render('profil')
 })
 
-app.put('/profil', userCtrl.update)
+app.post('/profil', userCtrl.updatep)
+
+app.post('/logout', userCtrl.logout)
+
+app.post('/delete', userCtrl.deleted)
 
 
 app.listen(8081, () => {

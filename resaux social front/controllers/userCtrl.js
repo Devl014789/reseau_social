@@ -11,6 +11,12 @@ exports.authToken = async (req, res, next) => {
     next();
 }
 
+exports.isloged = async (req, res, next) => {
+    let myToken = localStorageToken.getItem("jwt-token")
+    if(myToken)res.redirect("post")
+    next();
+}
+
 exports.register = async (req, res) => {   
     let reg = fetch("http://localhost:8080/api/user/register/", { 
         // Adding method type     
@@ -71,8 +77,8 @@ exports.login = async (req, res) => {
     })
 }
 
-exports.update = async (req, res) => {
-    let upd = fetch("http://localhost:8080/api/updateuser", {
+exports.updatep = async (req, res) => {
+    let upd = await fetch("http://localhost:8080/api/updateuser", {
         method: "PUT",
         body: JSON.stringify ({
             token: localStorageToken.getItem('jwt-token'),
@@ -82,15 +88,38 @@ exports.update = async (req, res) => {
         }),
 
         headers: {       
-            "Content-type": "application/json",    
+            "Content-type": "application/json",
+            Authorization: localStorageToken.getItem("jwt-token"), 
          }, 
     })
     .then((response) => response.json())
     .then((json) => {
+        res.render('profil', json)
+
+        
+})
+}
+
+exports.logout = async (req, res) => {
+            localStorageToken.clear('jwt-token'),
+            res.redirect('/')
+
+}
+
+exports.deleted = async (req, res) => {
+    let del = fetch("http://localhost:8080/api/deleteuser", {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json",
+            },
+            body: JSON.stringify ({
+                token: localStorageToken.getItem('jwt-token'),
+            })
+    })
+    .then((response) => response.json())
+    .then((json) => {
         console.log(json);
-        res.render("profil", json)
-})
-   .catch((err) => {
-    console.log(err);
-})
+        res.render("login", json)
+        localStorageToken.clear('jwt-token')
+    })
 }

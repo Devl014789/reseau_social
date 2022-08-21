@@ -16,11 +16,13 @@
 
   <div class="cont_profil">
     <div class="cont_form">
-      <form class="form_profil" action="profil" method="put" enctype="multipart/form-data">
+      <form class="form_profil" action="/profil" method="post">
         <input class="profil_input input_lf" type="text" name="lastname" placeholder="LastName" id="profil_last_name">
         <input class="profil_input input_lf" type="text" name="firstname" placeholder="FirstName" id="profil_first_name">
         <input class="profil_input" type="text" name="username" placeholder="Username" id="profil_username">
         <button class="profil_btn" type="submit" >Save</button>
+      </form><form action="/delete" method="post">
+        <button class="delete" type="submit" >delete</button>
       </form>
     </div>
   </div>

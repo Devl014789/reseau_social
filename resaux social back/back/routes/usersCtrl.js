@@ -97,7 +97,7 @@ module.exports = {
             })
             .catch((err) => {
                 console.log(err);
-                return res.status(500).json({ 'error': 'unable to verify user' });
+                return res.status(500).json({ error: 'unable to verify user' });
             });
 
     },
@@ -112,16 +112,16 @@ module.exports = {
                 if (userFound) {
                     return res.status(200).json(userFound)
                 } else {
-                    return res.status(400).json({ 'error': 'user not exist' });
+                    return res.status(400).json({ error: 'user not exist' });
                 }
             })
             .catch((err) => {
-                return res.status(500).json({ 'error': 'je ne connais l\'erreur' });
+                return res.status(500).json({ error: 'je ne connais l\'erreur' });
             });
 
     },
     UpdateUser: function (req, res) {
-        let token = req.body.token;
+        let token = req.headers['authorization'];;
         console.log(token);
         res.cookie('jwt', token, { httpOnly: true });
         let userId = jwtUtiles.getUserId(token)
@@ -137,7 +137,7 @@ module.exports = {
                     done(null, userFound);
                 })
                     .catch((err) => {
-                        return res.status(500).json({ 'error': 'unable to verify user' });
+                        return res.status(500).json({ error: 'unable to verify user' });
                     });
             },
             (userFound, done) => {
@@ -149,23 +149,18 @@ module.exports = {
                     }).then(() => {
                         done(userFound);
                         return res.status(201).json({
-                            "message":  'User successfully created'
+                            message:  'User successfully update'
 
                         })
                     }).catch((err) => {
-                        res.status(500).json({ 'error': 'cannot update user' });
+                        res.status(500).json({ error : 'cannot update user' });
+                        console.log(err); 
                     });
                 } else {
-                    res.status(404).json({ 'error': 'user not found' });
+                    res.status(404).json({ error : 'user not found' });
                 }
             },
-        ], (userFound) => {
-            if (userFound) {
-                return res.status(201).json(userFound);
-            } else {
-                return res.status(500).json({ 'error': 'cannot update user profile' });
-            }
-        });
+        ])
     },
     DeleteUser: (req, res) => {
         let token = req.body.token;
